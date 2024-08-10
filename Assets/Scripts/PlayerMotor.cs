@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class PlayerMotor : MonoBehaviour
         moveDirection.x = input.x;
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+    }
+
+    public void Dash()
+    {
+        controller.Move(transform.TransformDirection(Vector3.forward) * speed);
     }
 
 }

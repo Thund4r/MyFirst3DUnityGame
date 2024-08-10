@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   agent: {fileID: 4992727923387933435}
+  health: 2
 --- !u!54 &4537885876542061087
 Rigidbody:
   m_ObjectHideFlags: 0

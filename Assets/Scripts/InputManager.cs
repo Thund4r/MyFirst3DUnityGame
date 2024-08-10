@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
         playerLook = GetComponent<PlayerLook>();
         playerShoot = GetComponent<PlayerShoot>();
         ground.Shoot.performed += ctx => playerShoot.Shoot();
+        ground.Dash.performed += ctx => playerMotor.Dash();
     }
 
     // Update is called once per frame
