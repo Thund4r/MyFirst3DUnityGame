@@ -9,8 +9,8 @@ public class PlayerLook : MonoBehaviour
     private float yRotation = 0f;
     private float xRotation = 0f;
 
-    public float ySensitivity = 10f;
-    public float xSensitivity = 10f;
+    public float ySensitivity = 30f;
+    public float xSensitivity = 30f;
 
     public void ProcessLook(Vector2 input)
     {

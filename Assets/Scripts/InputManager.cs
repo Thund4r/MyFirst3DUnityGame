@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
 
     private PlayerMotor playerMotor;
     private PlayerLook playerLook;
+    private PlayerShoot playerShoot;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,6 +17,8 @@ public class InputManager : MonoBehaviour
         ground = playerInput.Ground;
         playerMotor = GetComponent<PlayerMotor>();
         playerLook = GetComponent<PlayerLook>();
+        playerShoot = GetComponent<PlayerShoot>();
+        ground.Shoot.performed += ctx => playerShoot.Shoot();
     }
 
     // Update is called once per frame
