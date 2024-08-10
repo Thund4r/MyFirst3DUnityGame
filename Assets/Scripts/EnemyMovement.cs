@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform player;
+
     public float movementSpeed;
     public GameObject agent;
     // Start is called before the first frame update
@@ -15,8 +15,8 @@ public class EnemyMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        agent.transform.LookAt(player);
+    {    
+        agent.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
         transform.position += transform.forward * Time.deltaTime * movementSpeed;
     }
 }
