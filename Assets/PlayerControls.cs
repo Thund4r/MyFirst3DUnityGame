@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot Energy"",
+                    ""type"": ""Button"",
+                    ""id"": ""a05f2273-367f-48e5-bdc3-0a1a3df37ce5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec23b246-049d-47dd-bcdc-aeb0aefbc299"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot Energy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Ground_Look = m_Ground.FindAction("Look", throwIfNotFound: true);
         m_Ground_Shoot = m_Ground.FindAction("Shoot", throwIfNotFound: true);
         m_Ground_Dash = m_Ground.FindAction("Dash", throwIfNotFound: true);
+        m_Ground_ShootEnergy = m_Ground.FindAction("Shoot Energy", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Look;
     private readonly InputAction m_Ground_Shoot;
     private readonly InputAction m_Ground_Dash;
+    private readonly InputAction m_Ground_ShootEnergy;
     public struct GroundActions
     {
         private @PlayerControls m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Ground_Look;
         public InputAction @Shoot => m_Wrapper.m_Ground_Shoot;
         public InputAction @Dash => m_Wrapper.m_Ground_Dash;
+        public InputAction @ShootEnergy => m_Wrapper.m_Ground_ShootEnergy;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @ShootEnergy.started += instance.OnShootEnergy;
+            @ShootEnergy.performed += instance.OnShootEnergy;
+            @ShootEnergy.canceled += instance.OnShootEnergy;
         }
 
         private void UnregisterCallbacks(IGroundActions instance)
@@ -274,6 +300,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @ShootEnergy.started -= instance.OnShootEnergy;
+            @ShootEnergy.performed -= instance.OnShootEnergy;
+            @ShootEnergy.canceled -= instance.OnShootEnergy;
         }
 
         public void RemoveCallbacks(IGroundActions instance)
@@ -297,5 +326,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnShootEnergy(InputAction.CallbackContext context);
     }
 }

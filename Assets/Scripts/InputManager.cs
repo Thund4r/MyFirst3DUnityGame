@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
         playerLook = GetComponent<PlayerLook>();
         playerShoot = GetComponent<PlayerShoot>();
         ground.Shoot.performed += ctx => playerShoot.Shoot();
+        ground.ShootEnergy.performed += ctx => playerShoot.ShootEnergy();
         ground.Dash.performed += ctx => playerMotor.Dash();
     }
 

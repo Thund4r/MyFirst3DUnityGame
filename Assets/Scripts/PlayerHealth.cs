@@ -33,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void UpdateHealth()
     {
-        Debug.Log(health);
         float healthFill = RedHealth.fillAmount;
         float healthFrac = health / maxHP;
         if (healthFill > healthFrac)
