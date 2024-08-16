@@ -17,9 +17,15 @@ public class PlayerShoot : MonoBehaviour
     }
     public void ShootEnergy()
     {
-        Vector3 EBulletPos = gun.transform.forward * 2 + gun.transform.position;
-        GameObject energyBullet = Instantiate(energyBulletPrefab, EBulletPos, gun.transform.rotation);
-        energyBullet.GetComponent<Rigidbody>().AddForce(energyBullet.transform.forward * energyBulletSpeed);
-        Destroy(energyBullet, 7);
+        PlayerEnergy playerEnergy = GameObject.FindGameObjectWithTag("PlayerHUD").GetComponent<PlayerEnergy>();
+        if (playerEnergy.energy >= 10)
+        {
+            playerEnergy.LoseEnergy(10);
+            Vector3 EBulletPos = gun.transform.forward * 2 + gun.transform.position;
+            GameObject energyBullet = Instantiate(energyBulletPrefab, EBulletPos, gun.transform.rotation);
+            energyBullet.GetComponent<Rigidbody>().AddForce(energyBullet.transform.forward * energyBulletSpeed);
+            Destroy(energyBullet, 7);
+        }
+        
     }
 }
