@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
     public float speed = 5f;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,7 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ProcessMove(Vector2 input)
@@ -26,7 +25,9 @@ public class PlayerMotor : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
+        moveDirection.y = -10f;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+
     }
 
     public void Dash()
